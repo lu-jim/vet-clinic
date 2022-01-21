@@ -95,3 +95,17 @@ SELECT S.name,
 FROM animals A
   INNER JOIN species S ON A.species_id = S.id
 GROUP BY S.name;
+SELECT A.name, S.name
+FROM animals A
+  JOIN species S ON A.species_id = S.id
+  JOIN owners O ON A.owner_id = O.id  WHERE O.full_name = 'Jennifer Orwell' AND S.name = 'Digimon'
+GROUP BY A.name, S.name;
+SELECT A.name, A.escape_attempts
+FROM animals A
+  JOIN owners O ON A.owner_id = O.id  WHERE O.full_name = 'Dean Winchester' AND A.escape_attempts = 0
+GROUP BY A.name, A.escape_attempts;
+SELECT O.full_name,
+  COUNT(*)
+FROM animals A
+  INNER JOIN owners O ON A.owner_id = O.id
+GROUP BY O.full_name ORDER BY COUNT(*) DESC;
