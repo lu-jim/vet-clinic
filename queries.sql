@@ -71,10 +71,10 @@ SELECT species,
   MIN(weight_kg),
   MAX(weight_kg)
 FROM animals
-GROUP BY species;
-SELECT species,
+GROUP BY species_id;
+SELECT species_id,
   avg(escape_attempts)
 from animals
 WHERE date_of_birth > '1989-12-31'
   AND date_of_birth < '2001-01-01'
-GROUP BY species;
+GROUP BY species_id;
