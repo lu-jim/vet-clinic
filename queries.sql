@@ -78,3 +78,20 @@ from animals
 WHERE date_of_birth > '1989-12-31'
   AND date_of_birth < '2001-01-01'
 GROUP BY species_id;
+SELECT name
+FROM owners O
+  JOIN animals A ON O.id = A.owner_id
+WHERE full_name = 'Melody Pond';
+SELECT A.name
+FROM species S
+  JOIN animals A ON S.id = A.species_id
+WHERE S.name = 'Pokemon';
+SELECT full_name,
+  name
+FROM owners O
+  LEFT JOIN animals A ON O.id = A.owner_id;
+SELECT S.name,
+  COUNT(*)
+FROM animals A
+  INNER JOIN species S ON A.species_id = S.id
+GROUP BY S.name;
