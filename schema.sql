@@ -35,8 +35,8 @@ CREATE TABLE vets (
 DROP TABLE IF EXISTS specializations;
 CREATE TABLE specializations (
     vet_id int REFERENCES vets NOT NULL,
-    animal_id int REFERENCES animals NOT NULL,
-    PRIMARY KEY(vet_id, animal_id)
+    species_id int REFERENCES species NOT NULL,
+    PRIMARY KEY(vet_id, species_id)
 );
 DROP TABLE IF EXISTS visits;
 CREATE TABLE visits (

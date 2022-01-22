@@ -95,17 +95,43 @@ SELECT S.name,
 FROM animals A
   INNER JOIN species S ON A.species_id = S.id
 GROUP BY S.name;
-SELECT A.name, S.name
+SELECT A.name,
+  S.name
 FROM animals A
   JOIN species S ON A.species_id = S.id
-  JOIN owners O ON A.owner_id = O.id  WHERE O.full_name = 'Jennifer Orwell' AND S.name = 'Digimon'
-GROUP BY A.name, S.name;
-SELECT A.name, A.escape_attempts
+  JOIN owners O ON A.owner_id = O.id
+WHERE O.full_name = 'Jennifer Orwell'
+  AND S.name = 'Digimon'
+GROUP BY A.name,
+  S.name;
+SELECT A.name,
+  A.escape_attempts
 FROM animals A
-  JOIN owners O ON A.owner_id = O.id  WHERE O.full_name = 'Dean Winchester' AND A.escape_attempts = 0
-GROUP BY A.name, A.escape_attempts;
+  JOIN owners O ON A.owner_id = O.id
+WHERE O.full_name = 'Dean Winchester'
+  AND A.escape_attempts = 0
+GROUP BY A.name,
+  A.escape_attempts;
 SELECT O.full_name,
   COUNT(*)
 FROM animals A
   INNER JOIN owners O ON A.owner_id = O.id
-GROUP BY O.full_name ORDER BY COUNT(*) DESC;
+GROUP BY O.full_name
+ORDER BY COUNT(*) DESC;
+/* Add "join table" for visits */
+SELECT a.name,
+  vi.date_of_visit, ve.name
+FROM animals a
+  JOIN visits vi ON a.id = vi.animal_id
+  JOIN vets ve ON ve.id = vi.vet_id
+  WHERE ve.name = 'William Tatcher'
+ORDER BY vi.date_of_visit DESC;
+SELECT COUNT(DISTINCT a.id)
+FROM animals a
+  JOIN visits vi ON a.id = vi.animal_id
+  JOIN vets ve ON ve.id = vi.vet_id
+  WHERE ve.id = 3;
+SELECT v.name,
+  name
+FROM owners O
+  LEFT JOIN animals A ON O.id = A.owner_id;
