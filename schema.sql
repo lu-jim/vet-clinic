@@ -40,8 +40,10 @@ CREATE TABLE specializations (
 );
 DROP TABLE IF EXISTS visits;
 CREATE TABLE visits (
-    vet_id int REFERENCES vets NOT NULL,
-    animal_id int REFERENCES animals NOT NULL,
-    date_of_visit varchar(80) NOT NULL,
-    PRIMARY KEY(vet_id, animal_id)
+    vet_id int NOT NULL,
+    animal_id int NOT NULL,
+    date_of_visit date NOT NULL,
+    FOREIGN KEY (vet_id) REFERENCES vets(id) ON DELETE RESTRICT ON UPDATE CASCADE,
+    FOREIGN KEY (animal_id) REFERENCES animals(id) ON DELETE RESTRICT ON UPDATE CASCADE,
+    PRIMARY KEY(vet_id, animal_id, date_of_visit)
 );
